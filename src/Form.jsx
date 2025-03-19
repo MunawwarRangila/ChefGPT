@@ -9,6 +9,8 @@ export default function Form(){
     const [recipe, setRecipe] = React.useState(false)
     const [loading, setLoading] = React.useState(false)
     const [error, setError] = React.useState(null)
+    const [inputError, setInputError] = React.useState(false)
+    
         
     async function getRecipe(){
         setLoading(true)
@@ -30,15 +32,33 @@ export default function Form(){
         }
     }
 
+    
+
     function handleSubmit(formData){
         const newItem = formData.get("ingredients")
-        setIngredients((prev)=>[...prev, newItem])        
+        // Only add the ingredient if it's not empty or just whitespace
+        if (newItem && newItem.trim() !== '') {
+            setIngredients((prev)=>[...prev, newItem.trim()])
+            setInputError(false) // Clear any previous error
+        } else {
+            setInputError(true) // Set error state to true
+        }
     }
 
     return (
         <main className="main">
+            
+            
+
             <form className='form' action={handleSubmit}>
-                <input type='text' id='ingredients' name='ingredients' placeholder="e.g. Oregano" />
+                <input 
+                    type='text' 
+                    id='ingredients' 
+                    name='ingredients' 
+                    placeholder="e.g. Oregano" 
+                    className={inputError ? 'error-input' : ''}
+                    onChange={() => setInputError(false)} // Clear error when user starts typing
+                />
                 <button>Add Ingredients</button>
             </form>
 

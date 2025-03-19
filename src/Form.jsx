@@ -5,7 +5,7 @@ import IngredientList from './IngredientList.jsx'
 import {getRecipeFromMistral } from './ai.js'
 
 export default function Form(){
-    const [ingredients, setIngredients] = React.useState(['Oregano', 'Basil', 'Salt', 'Pepper'])
+    const [ingredients, setIngredients] = React.useState([])
     const [recipe, setRecipe] = React.useState(false)
     const [loading, setLoading] = React.useState(false)
     const [error, setError] = React.useState(null)

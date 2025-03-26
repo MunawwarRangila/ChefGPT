@@ -7,8 +7,8 @@ export default function IngredientList(props){
     return(
         <section>
             <div className="list-section">
-            <h2>Ingredients on hand:</h2>
-            <ul className="ingredients-list" aria-live="polite">{list}</ul>
+                {list.length > 0 ? <h2>Ingredients on hand:</h2> : null}
+                <ul className="ingredients-list" aria-live="polite">{list}</ul>
             </div>
             <div className="get-recipe-container">
                 <div>

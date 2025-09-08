@@ -2,7 +2,7 @@ import React from 'react'
 import './index.css'
 import Recipe from './Recipe.jsx'
 import IngredientList from './IngredientList.jsx'
-import {getRecipeFromMistral } from './ai.js'
+import { getRecipeFromMistral } from './ai.js'
 
 export default function Form(){
     const [ingredients, setIngredients] = React.useState([])

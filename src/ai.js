@@ -4,6 +4,7 @@ const SYSTEM_PROMPT = `You are an assistant that receives a list of ingredients 
 
 // Check if the API key exists
 const apiKey = import.meta.env.VITE_HUGGING_FACE_API_KEY
+
 if (!apiKey) {
   console.error('API key is missing! Make sure VITE_HUGGING_FACE_API_KEY is set in your .env file')
 }

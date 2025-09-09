@@ -7,9 +7,22 @@ import { getRecipeFromMistral } from './ai.js'
 export default function Form(){
     const [ingredients, setIngredients] = React.useState([])
     const [recipe, setRecipe] = React.useState(false)
+
     const [loading, setLoading] = React.useState(false)
+
     const [error, setError] = React.useState(null)
+
     const [inputError, setInputError] = React.useState(false)
+
+    const recipeSection  = React.useRef(null)
+
+
+     React.useEffect(()=>{
+        if(recipe!=null && recipeSection.current != null){
+            recipeSection.current.scrollIntoView({behaviour : "smooth"})
+            }
+    }, [recipe])
+
     
         
     async function getRecipe(){
@@ -62,7 +75,11 @@ export default function Form(){
                 <button>Add Ingredients</button>
             </form>
 
-            <IngredientList ingredients={ingredients} getRecipe={getRecipe} />  
+            <IngredientList
+            ref =  {recipeSection}
+            ingredients={ingredients} 
+            getRecipe={getRecipe} 
+            />  
            <div className='suggested-recipe-container '>
                 {loading ? <p>Generating recipe...</p> : null}
                 {error ? <p className="error">{error}</p> : null}
